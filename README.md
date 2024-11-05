@@ -7,7 +7,7 @@ Projeto desenvolvido da disciplina de Circuitos Digitais, do primeiro semestre d
 Software de prototipagem Logisim ([download](https://sourceforge.net/projects/circuit/) - externo).
 
 ## Membros da equipe:
-- [Bruno Macedo](github.com/brunom-dev);
-- [Sebastião Soares](github.com/sebastiaosoares);
+- [Bruno Macedo](https://github.com/brunom-dev);
+- [Sebastião Soares](https://github.com/sebastiaosoares);
 
 - **Professor:** [Ramon Nepomuceno](mailto:ramon.nepomuceno@ufca.edu.br).
