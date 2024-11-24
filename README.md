@@ -32,6 +32,16 @@ A jogabilidade funciona da forma descrita abaixo.
 Nesta seção, será detalhada a lógica por trás do Jogo da Memória e o funcionamento do circuito.
 
 <div align="center">
-  <img width="50%" src="docs/principal.png"><br>
-  <i>Imagem da parte principal do circuito.</i>
+   <br><img width="50%" src="docs/0.png"><br>
+   <i>Imagem da parte principal do circuito.</i><br>
+</div>
+
+### 1. Registro e captação das coordenadas
+<div align="center">
+   <br><img width="50%" src="docs/1.png"><br>
+</div>
+
+### 2. 
+<div align="center">
+   <br><img width="50%" src="docs/2.png"><br>
 </div>
