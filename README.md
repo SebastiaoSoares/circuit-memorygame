@@ -40,7 +40,7 @@ Nesta seção, será detalhada a lógica por trás do Jogo da Memória e o funci
 <div align="center">
    <br><img width="30%" src="docs/1.png"><br>
 </div> <br>
-Essa parte do circuito é responsável por registrar as coordenadas selecionadas pelos jogadores no tabuleiro, organizando-as em linha (LIN) e coluna (COL).
+Essa parte do circuito é responsável pela captação e registro das coordenadas selecionadas pelos jogadores no tabuleiro, armazenando-as em linha (LIN) e coluna (COL).
 
    - <strong>Botões de entrada (LINHA e COLUNA)</strong> <br>
         Esses botões atuam como sinais de controle para os flip-flops tipo D, responsáveis por registrar as coordenadas. Quando pressionados, alteram os valores das saídas correspondentes à linha (LIN) ou à coluna (COL).
@@ -53,7 +53,26 @@ Essa parte do circuito é responsável por registrar as coordenadas selecionadas
 
 
 
-### 2. 
+### 2. Gerenciador de Estados
 <div align="center">
    <br><img width="30%" src="docs/2.png"><br>
-</div>
+</div> <br>
+O gerenciador de estados é responsável por controlar o fluxo de estados do jogo, alternando entre os diferentes estágios da jogabilidade. Ele utiliza um flip-flop tipo D e portas lógicas para definir qual estado o jogo deve estar em um determinado momento.
+
+   - <strong>Flip-Flop tipo D</strong> <br>
+         O flip-flop armazena o estado atual do jogo. Quando o botão "CONFIRMA" é pressionado, ele gera um pulso de clock, permitindo que o valor presente na entrada "D" seja capturado e armazenado na saída "Q". Isso define o estado atual do jogo.
+   
+   - <strong> Portas AND </strong> <br>
+         As portas AND recebem sinais dos estados anteriores e o sinal do botão CONFIRMA para calcular a transição entre os estados state0, state1, state2, e state3.
+
+   - <strong> Estados (state0, state1, state2, state3) </strong> <br>
+         Cada estado corresponde a uma fase específica do jogo:
+
+        - <strong>state0</strong>: Seleção da primeira peça.
+        - <strong>state1</strong>: Seleção da segunda peça.
+        - <strong>state2</strong>: Confirmação das peças selecionadas.
+        - <strong>state3</strong>: Alternância de jogador e atualização da pontuação. Após atingir o state3, a máquina de estados é resetada, retornando ao estado inicial (state0) para reiniciar o processo com o próximo jogador.
+
+
+
+
