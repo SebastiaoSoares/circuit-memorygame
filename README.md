@@ -39,7 +39,19 @@ Nesta seção, será detalhada a lógica por trás do Jogo da Memória e o funci
 ### 1. Registro e captação das coordenadas
 <div align="center">
    <br><img width="30%" src="docs/1.png"><br>
-</div>
+</div> <br>
+Essa parte do circuito é responsável por registrar as coordenadas selecionadas pelos jogadores no tabuleiro, organizando-as em linha (LIN) e coluna (COL).
+
+   - <strong>Botões de entrada (LINHA e COLUNA)</strong> <br>
+        Esses botões atuam como sinais de controle para os flip-flops tipo D, responsáveis por registrar as coordenadas. Quando pressionados, alteram os valores das saídas correspondentes à linha (LIN) ou à coluna (COL).
+
+   - <strong>Flip-Flops tipo D</strong> <br>
+        Cada flip-flop registra e armazena o valor correspondente à linha ou coluna. O valor atualizado é exibido na saída ("LIN" e "COL"), representando as coordenadas escolhidas.
+
+   - <strong>Saídas "x" e "y"</strong> <br>
+        As saídas combinadas das coordenadas (x para coluna, y para linha) são utilizadas pelo circuito principal para acessar as posições do tabuleiro.
+
+
 
 ### 2. 
 <div align="center">
