@@ -38,10 +38,10 @@ Nesta seção, será detalhada a lógica por trás do Jogo da Memória e o funci
 
 ### 1. Registro e captação das coordenadas
 <div align="center">
-   <br><img width="50%" src="docs/1.png"><br>
+   <br><img width="30%" src="docs/1.png"><br>
 </div>
 
 ### 2. 
 <div align="center">
-   <br><img width="50%" src="docs/2.png"><br>
+   <br><img width="30%" src="docs/2.png"><br>
 </div>
