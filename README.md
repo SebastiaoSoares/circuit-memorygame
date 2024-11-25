@@ -74,5 +74,22 @@ O gerenciador de estados é responsável por controlar o fluxo de estados do jog
         - <strong>state3</strong>: Alternância de jogador e atualização da pontuação. Após atingir o state3, a máquina de estados é resetada, retornando ao estado inicial (state0) para reiniciar o processo com o próximo jogador.
 
 
+### 3. Gerenciador dos LED´S
+<div align="center">
+   <br><img width="30%" src="docs/3.png"><br>
+</div> <br>
+
+O demultiplexador (DMX) é responsável por controlar qual LED será aceso, indicando a peça atual que o jogador está percorrendo no tabuleiro. Ele utiliza as coordenadas registradas (XY) para selecionar a saída correspondente.
+
+   - <strong>Entrada do DMX</strong>
+      - O valor constante 1 é aplicado à entrada do demultiplexador. Isso significa que ele sempre terá um sinal ativo para ser enviado.
+      - A variável de controle são as coordenadas XY (linha e coluna) provenientes do registro de coordenadas. Elas determinam qual saída será ativada.
+      
+   - <strong>Saídas do DMX</strong>
+      - As saídas do demultiplexador correspondem aos túneis correspondente a cada LED do tabuleiro, com cada saída ativando o LED da peça atual que o jogador está percorrendo.
+    
+Na prática temos que ao navegar pelo tabuleiro utilizando os botões de controle (LINHA e COLUNA), o DMX atualiza a saída correspondente com base no valor das coordenadas registradas, acendendo o LED que indica a posição atual.
+
+
 
 
