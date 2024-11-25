@@ -6,6 +6,7 @@
 - [Simulador](#simulador);
 - [Uso](#uso);
 - [O circuito](#o-circuito);
+- [Conclusão](#conclusao);
 
 ## Sobre o projeto
 
@@ -238,3 +239,8 @@ Sendo assim, para evitar que isso ocorra, foi adicionada uma validação ao ato 
 Dessa forma, a validação consiste em descobrir se o verificador da peça confirmada pelo jogador está ligado, por meio de um MUX que escolhe entre os verificadores de cada peça, a partir da posição da peça em questão. Uma observação importante é que, caso estejamos no estado 2, não precisamos nos preocupar com a confirmação sobre uma peça já selecionada, pois essa ação, nesse estado, apenas deve mudar para o estado de verificação.
 
 Logo, **CONFIRMA** = (*state2* + *saída do MUX*) × **CONFIRMAR**, para todos os efeitos que essa confirmação implicar.
+
+
+## Conclusão
+
+O Projeto Jogo da Memória foi desenvolvido para aplicar os conceitos de circuitos sequenciais e estruturas de memória, proporcionando uma experiência prática com displays hexadecimais e interações via botões e LEDs. Esse trabalho exemplifica a utilização de conceitos teóricos em um contexto real de desenvolvimento digital.
