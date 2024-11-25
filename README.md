@@ -138,3 +138,25 @@ Esses multiplexadores (MUX) são responsaveis por manter a primeira peça seleci
      - <strong>valueXY2:</strong> Ativa a segunda peça com base na nova seleção do jogador.
 <br>
 Esse é um funcionamento essencial no jogo da memória, pois assim possibilita os jogadores memorizarem as peças e suas respectivas posições durante o andamento do jogo.
+
+<br>
+
+
+### 6. Estrutura de Verificação de Acerto
+<div align="center">
+   <br><img width="30%" src="docs/4.png"><br>
+</div> <br>
+
+Estrutura responsável por comparar os valores das peças selecionadas e determinar se houve um acerto, gerando um sinal para indicar o resultado. Ele utiliza comparadores e portas lógica combinacionais para realizar a verificação.
+
+- <strong>Entradas</strong>
+   - valueXY1 e valueXY2: Representam os valores das peças selecionadas no tabuleiro. São as saídas dos multiplexadores descritos na Etapa 5.
+   - state3: Representa o estado do jogo em que ocorre a verificação de acerto, garantindo que a comparação só seja realizada na etapa correta e contabilize acerto apenas por um instante de pulso.
+- <strong>Comparador</strong>
+   - O comparador verifica a igualdade entre valueXY1 e valueXY2. e os valores forem iguais, a saída do comparador será ativada (lógica 1), indicando que as peças formar um par correto.
+- <strong>Porta AND</strong>
+   - A porta AND combina o resultado do comparador com o sinal do estado state3. Isso assegura que o pulso de "acerto" (correct) só será gerado se o jogo estiver no estado de verificação e os valores forem iguais.
+- <strong> Saída: correct </strong>
+   - A saída correct indica se o jogador acertou ao selecionar as peças. Este sinal é utilizado para atualizar a pontuação como vai ser descrito posteriomente.
+
+
