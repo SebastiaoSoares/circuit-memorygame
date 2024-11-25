@@ -5,8 +5,7 @@
 - [Equipe](#equipe);
 - [Simulador](#simulador);
 - [Uso](#uso);
-- [O circuito](#o-circuito);
-- [Conclusão](#conclusão);
+- [O circuito](#o-circuito).
 
 ## Sobre o projeto
 
