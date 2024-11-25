@@ -8,8 +8,9 @@
 - [O circuito](#o-circuito);
 
 ## Sobre o projeto
-Projeto desenvolvido da disciplina de Circuitos Digitais, do primeiro semestre do bacharelado em Ciência da Computação na Universidade Federal do Cariri (UFCA), com o objetivo de trabalhar os conceitos aprendidos em sala, a respeito de estruturas de memória (circuitos sequenciais).
-A proposta consiste em um jogo da memória, onde a visualização das "peças" é feita com Displays Hexadecimais e os valores escondidos poder ser números de 0 a F (hex). A jogabilidade é feita por meio de botões que acionam contadores e registradores de modo a construir a escolha de peças, a alternância de jogadores, registro das pontuações e definição de um vencedor.
+
+Projeto desenvolvido na disciplina de Circuitos Digitais, do primeiro semestre do bacharelado em Ciência da Computação na Universidade Federal do Cariri (UFCA), com o objetivo de aplicar os conceitos aprendidos em sala sobre estruturas de memória (circuitos sequenciais).
+A proposta consiste em um jogo da memória, em que a visualização das "peças" é feita com displays hexadecimais, e os valores escondidos podem ser números de 0 a F (hexadecimais). A jogabilidade é implementada por meio de botões que acionam contadores e registradores, permitindo a escolha de peças, alternância entre jogadores, registro das pontuações e definição de um vencedor.
 
 ## Equipe
 - [Bruno Macedo (GitHub)](https://github.com/brunom-dev);
@@ -160,3 +161,80 @@ Estrutura responsável por comparar os valores das peças selecionadas e determi
    - A saída correct indica se o jogador acertou ao selecionar as peças. Este sinal é utilizado para atualizar a pontuação como vai ser descrito posteriomente.
 
 
+### 7. Verificador de acerto de cada peça:
+<div align="center">
+   <br><img width="30%" src="docs/7.png"><br>
+</div> <br>
+
+Agora que temos a indicação de um acerto (**correct**) e as coordenadas salvas das duas últimas peças selecionadas (**savedXY1** e **savedXY2**), podemos criar as estruturas que verificam se cada peça já teve seu par descoberto. Para isso, verifica-se, em cada caso, se uma das coordenadas salvas é igual à coordenada da peça e, caso seja, se receber 1 em **correct**, enviará um pulso de acerto para a peça correspondente por meio da variável **correct_xy**, em que **xy** é a coordenada da peça (**correct_00**, **correct_01**, …, **correct_33**).
+
+Esse pulso de acerto específico de cada peça será, mais à frente, registrado e servirá para indicar que a peça deve permanecer em exibição, por ter tido seu par descoberto.
+
+
+### 8. Verificadores do estado de exibição dos valores:
+<div align="center">
+   <br><img width="30%" src="docs/8.png"><br>
+</div> <br>
+
+Nesse circuito, temos a intenção de receber, para cada peça, uma variável **vXY**, sendo **XY** sua coordenada, que indique com 0 ou 1 se a peça deve ser exibida.
+
+* Para isso, verifica-se os fatores, em cada peça:
+  * Se é a primeira peça selecionada da jogada (**LIN1** e **COL1**) e não está no estado 0 (único que não exibe peça da jogada atual) – estado passageiro;
+  * Se for a segunda peça selecionada da jogada (**LIN2** e **COL2**) e está no estado 2 (único que possui a atual segunda peça em exibição) – estado passageiro;
+  * Se o registro de **correct_xy** (**xy** sendo a coordenada) for 1, indicando que a peça foi acertada – estado permanente.
+
+Assim, em qualquer um desses casos, conforme indicado na imagem, a peça deve ser exibida. Portanto, o **vXY** da peça **XY** recebe 1.
+
+
+### 9. Mostrando ou ocultando os valores:
+<div align="center">
+   <br><img width="30%" src="docs/9.png"><br>
+</div> <br>
+
+Já sabemos se os valores devem ser mostrados ou ocultados em cada caso. Em seguida, utilizaremos essas informações para mostrar ou ocultar os valores das peças.
+
+Assim, temos um conjunto de **MUX** que escolhem valor nulo se **vXY** equivaler a 0 (não mostrar) ou escolhem o valor real da peça caso **vXY** equivaler a 1 (mostrar).
+
+**Observação:** os valores de cada peça, nessa versão do projeto, são fixos e definidos em tempo de desenvolvimento, apesar de que uma geração aleatória desses valores pode ser possível.
+
+
+### 10. Registra a vez de P1 e P2:
+<div align="center">
+   <br><img width="30%" src="docs/10.png"><br>
+</div> <br>
+
+O estado 3 do nosso circuito indica a transição entre uma jogada completa e outra. Então foi utilizado um contador de 1 bit, que varia entre 0 e 1, e é ativado pelo pulso do terceiro estado, indicando então a mudança entre as vezes dos jogadores. Desse modo, a saída do contador é armazenada na variável **P2**, que é positiva quando a vez for do *player 2*, enquanto a variável **P1** recebe o inverso de **P2**, correspondendo à jogada do *player 1*.
+
+
+### 11. Registra os pontos de P1 e P2:
+<div align="center">
+   <br><img width="30%" src="docs/11.png"><br>
+</div> <br>
+
+Sabendo-se a vez de cada jogador, indicada pelos túneis correspondentes, agora foram inseridos dois contadores, que incrementam ao pulso enviado pelo túnel **correct**, somente se, para o primeiro contador, for a vez do jogador 1 e, para o segundo contador, a vez do jogador 2.
+
+Ou seja:  
+**correct** × **!P2**, incrementa **PONTOS P1**.  
+**correct** × **P2**, incrementa **PONTOS P2**.
+
+
+### 12. Exibição do vencedor:
+<div align="center">
+   <br><img width="30%" src="docs/12.png"><br>
+</div> <br>
+
+Essa parte do circuito indica o vencedor. Para isso, primeiro verifica-se se o jogo chegou ao fim, caso as pontuações dos jogadores somem 8 (soma máxima possível ao fim do jogo). Em seguida, compara **PONTOS P1** e **PONTOS P2**. Caso sejam iguais, **win0** recebe 1, indicando empate. Se não, a depender da maior pontuação, **win1** (para o jogador 1) ou **win2** (para o jogador 2) receberá 1 e acionará os LEDs que indicam o vencedor na parte principal do circuito.
+
+
+### 13. Tratamento de erro de seleção de peça já “aberta”:
+<div align="center">
+   <br><img width="30%" src="docs/13.png"><br>
+</div> <br>
+
+O circuito, após a inclusão de todas as estruturas anteriores, já apresenta bom funcionamento, exceto pelo fato de que selecionar duas vezes a mesma peça, por exemplo, conta como uma jogada válida e acrescenta à pontuação do jogador correspondente.
+
+Sendo assim, para evitar que isso ocorra, foi adicionada uma validação ao ato de confirmar a seleção de uma determinada peça. O túnel responsável por receber a confirmação do jogador é chamado **CONFIRMAR**. Assim, chamamos de **CONFIRMA** o túnel que realmente transportará uma confirmação, caso a peça confirmada pelo usuário *NÃO* esteja "aberta", isto é, não esteja em exibição.
+
+Dessa forma, a validação consiste em descobrir se o verificador da peça confirmada pelo jogador está ligado, por meio de um MUX que escolhe entre os verificadores de cada peça, a partir da posição da peça em questão. Uma observação importante é que, caso estejamos no estado 2, não precisamos nos preocupar com a confirmação sobre uma peça já selecionada, pois essa ação, nesse estado, apenas deve mudar para o estado de verificação.
+
+Logo, **CONFIRMA** = (*state2* + *saída do MUX*) × **CONFIRMAR**, para todos os efeitos que essa confirmação implicar.
