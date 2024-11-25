@@ -45,13 +45,12 @@ Essa parte do circuito é responsável pela captação e registro das coordenada
    - <strong>Botões de entrada (LINHA e COLUNA)</strong> <br>
         Esses botões atuam como sinais de controle para os flip-flops tipo D, responsáveis por registrar as coordenadas. Quando pressionados, alteram os valores das saídas correspondentes à linha (LIN) ou à coluna (COL).
 
-   - <strong>Flip-Flops tipo D</strong> <br>
+   - <strong>Flip-Flops tipo D</strong> <br />
         Cada flip-flop registra e armazena o valor correspondente à linha ou coluna. O valor atualizado é exibido na saída ("LIN" e "COL"), representando as coordenadas escolhidas.
 
-   - <strong>Saídas "x" e "y"</strong> <br>
+   - <strong>Saídas "x" e "y"</strong> <br />
         As saídas combinadas das coordenadas (x para coluna, y para linha) são utilizadas pelo circuito principal para acessar as posições do tabuleiro.
-
-
+<br>
 
 ### 2. Gerenciador de Estados
 <div align="center">
@@ -60,8 +59,7 @@ Essa parte do circuito é responsável pela captação e registro das coordenada
 O gerenciador de estados é responsável por controlar o fluxo de estados do jogo, alternando entre os diferentes estágios da jogabilidade. Ele utiliza um flip-flop tipo D e portas lógicas para definir qual estado o jogo deve estar em um determinado momento.
 
    - <strong>Flip-Flop tipo D</strong> <br>
-         O flip-flop armazena o estado atual do jogo. Quando o botão "CONFIRMA" é pressionado, ele gera um pulso de clock, permitindo que o valor presente na entrada "D" seja capturado e armazenado na saída "Q". Isso define o estado atual do jogo.
-   
+         O flip-flop armazena o estado atual do jogo. Quando o botão "CONFIRMA" é pressionado, ele gera um pulso de clock, permitindo que haja o avanço do estado atual para o próximo.
    - <strong> Portas AND </strong> <br>
          As portas AND recebem sinais dos estados anteriores e o sinal do botão CONFIRMA para calcular a transição entre os estados state0, state1, state2, e state3.
 
@@ -72,7 +70,7 @@ O gerenciador de estados é responsável por controlar o fluxo de estados do jog
         - <strong>state1</strong>: Seleção da segunda peça.
         - <strong>state2</strong>: Confirmação das peças selecionadas.
         - <strong>state3</strong>: Alternância de jogador e atualização da pontuação. Após atingir o state3, a máquina de estados é resetada, retornando ao estado inicial (state0) para reiniciar o processo com o próximo jogador.
-
+<br>
 
 ### 3. Gerenciador dos LED´S
 <div align="center">
@@ -90,6 +88,32 @@ O demultiplexador (DMX) é responsável por controlar qual LED será aceso, indi
     
 Na prática temos que ao navegar pelo tabuleiro utilizando os botões de controle (LINHA e COLUNA), o DMX atualiza a saída correspondente com base no valor das coordenadas registradas, acendendo o LED que indica a posição atual.
 
+<br>
 
 
+### 4. Gerenciador dos LED´S
+<div align="center">
+   <br><img width="30%" src="docs/4.png"><br>
+</div> <br>
+
+Este circuito é responsável por armazenar as coordenadas das posições escolhidas no tabuleiro durante as etapas de seleção das peças. Ele utiliza flip-flops tipo D e portas lógicas para gerenciar e registrar as posições para cada jogada.
+
+   - <strong> Entrada de Controle </strong> <br>
+       O botão "CONFIRMA" serve como sinal de controle. Ele é usado para permitir o registro das coordenadas selecionadas, gerando um pulso que ativa o armazenamento nos flip-flops correspondentes.
+
+   - <strong> Estados State0 e State1 </strong> <br>
+        O controle do circuito é dividido em dois estados principais:
+       - State0: Registra as coordenadas da primeira peça selecionada (LIN1 e COL1).
+       - State1: Registra as coordenadas da segunda peça selecionada (LIN2 e COL2).
+       
+   - <strong> Flip-Flops Tipo D </strong> <br> 
+     Cada flip-flop armazena um valor de coordenada:
+     - LIN1 e COL1 armazenam as coordenadas da primeira peça.
+     - LIN2 e COL2 armazenam as coordenadas da segunda peça.
+
+   - <strong> Portas AND </strong> <br> 
+      As portas AND garantem que o registro só ocorra quando o botão "CONFIRMA" é pressionado e o circuito está no estado correto (state0 ou state1).
+
+   - <strong> Saídas </strong> <br>
+     As combinações das saídas dos flip-flops (savedXY1 e savedXY2) representam as coordenadas armazenadas de cada peça selecionada.
 
