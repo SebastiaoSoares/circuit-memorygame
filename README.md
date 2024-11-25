@@ -91,7 +91,7 @@ Na prática temos que ao navegar pelo tabuleiro utilizando os botões de control
 <br>
 
 
-### 4. Gerenciador dos LED´S
+### 4. Registrador das posições selecionadas
 <div align="center">
    <br><img width="30%" src="docs/4.png"><br>
 </div> <br>
@@ -123,7 +123,7 @@ Este circuito é responsável por armazenar as coordenadas das posições escolh
 
 ### 5. Multiplexadores para Seleção de Peças
 <div align="center">
-   <br><img width="30%" src="docs/4.png"><br>
+   <br><img width="30%" src="docs/5.png"><br>
 </div> <br>
 
 Esses multiplexadores (MUX) são responsaveis por manter a primeira peça selecionada ativa no tabuleiro enquanto o jogador escolhe a segunda peça do par.
@@ -144,7 +144,7 @@ Esse é um funcionamento essencial no jogo da memória, pois assim possibilita o
 
 ### 6. Estrutura de Verificação de Acerto
 <div align="center">
-   <br><img width="30%" src="docs/4.png"><br>
+   <br><img width="30%" src="docs/6.png"><br>
 </div> <br>
 
 Estrutura responsável por comparar os valores das peças selecionadas e determinar se houve um acerto, gerando um sinal para indicar o resultado. Ele utiliza comparadores e portas lógica combinacionais para realizar a verificação.
