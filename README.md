@@ -117,3 +117,24 @@ Este circuito é responsável por armazenar as coordenadas das posições escolh
    - <strong> Saídas </strong> <br>
      As combinações das saídas dos flip-flops (savedXY1 e savedXY2) representam as coordenadas armazenadas de cada peça selecionada.
 
+
+<br>
+
+
+### 5. Multiplexadores para Seleção de Peças
+<div align="center">
+   <br><img width="30%" src="docs/4.png"><br>
+</div> <br>
+
+Esses multiplexadores (MUX) são responsaveis por manter a primeira peça selecionada ativa no tabuleiro enquanto o jogador escolhe a segunda peça do par.
+
+- <strong>Entradas</strong>
+     - Os multiplexadores recebem entradas que representam as posições possíveis no tabuleiro. Cada posição é associada a uma coordenada (linha e coluna) do tabuleiro.
+     - As coordenadas salvas (savedXY1 e savedXY2) são usadas como sinais de controle.
+- <strong>MUX 1:</strong> Mantém ativa a posição correspondente à primeira peça selecionada, utilizando as coordenadas salvas em savedXY1
+- <strong>MUX 2:</strong> Ativa a posição correspondente à segunda peça selecionada, utilizando as coordenadas salvas em savedXY2
+- <strong>Saidas</strong>
+     - <strong>valueXY1</strong> Mantém a ativação da primeira peça, garantindo que ela continue iluminada durante a escolha da segunda peça.
+     - <strong>valueXY2:</strong> Ativa a segunda peça com base na nova seleção do jogador.
+<br>
+Esse é um funcionamento essencial no jogo da memória, pois assim possibilita os jogadores memorizarem as peças e suas respectivas posições durante o andamento do jogo.
